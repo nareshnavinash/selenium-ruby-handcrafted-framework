@@ -11,6 +11,7 @@ jobs:
     working_directory: ~/project
     steps:
       - checkout
+      run: gem install bundler:2.0.2
       - restore_cache:
           keys:
             - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
