@@ -1,0 +1,5 @@
+[2020-10-22 21:14:32 +0530] TEST   Description > Find Professionals in Upwork
+[2020-10-22 21:14:32 +0530] TEST   Test > Find professionals using search option in Upwork
+[2020-10-22 21:14:32 +0530] TEST   Run chrome brower with headless as false
+[2020-10-22 21:14:34 +0530] INFO   Driver initialized is - Driver - #<Libraries::Driver:0x00007f94d186bc68>
+[2020-10-22 21:14:34 +0530] TEST   Clear cookies from the browser

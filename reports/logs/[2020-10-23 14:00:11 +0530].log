@@ -1,0 +1,8 @@
+[2020-10-23 13:52:43 +0530] FILE    1. Find Professionals in Upwork
+[2020-10-23 13:52:43 +0530] TEST      1. Find professionals using search option in Upwork
+[2020-10-23 13:52:43 +0530] STEP        1. Run chrome brower with headless as false
+[2020-10-23 13:52:45 +0530] STEP        2. Clear cookies from the browser
+[2020-10-23 13:52:45 +0530] STEP        3. Navigate to Upwork website - https://www.upwork.com/
+[2020-10-23 13:53:47 +0530] WARN           > Relaunching the browser after 2 mins to mitigate the captcha issue
+[2020-10-23 13:55:50 +0530] WARN           > Relaunching the browser after 2 mins to mitigate the captcha issue
+[2020-10-23 13:57:54 +0530] WARN           > Relaunching the browser after 2 mins to mitigate the captcha issue

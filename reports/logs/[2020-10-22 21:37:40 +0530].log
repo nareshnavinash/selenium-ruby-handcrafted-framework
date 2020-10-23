@@ -1,0 +1,9 @@
+[2020-10-22 21:37:17 +0530] FILE    Find Professionals in Upwork
+[2020-10-22 21:37:17 +0530] TEST      Find professionals using search option in Upwork
+[2020-10-22 21:37:17 +0530] STEP       Run chrome brower with headless as false
+[2020-10-22 21:37:19 +0530] INFO       Driver initialized is - Driver - #<Libraries::Driver:0x00007fd5ae18b178>
+[2020-10-22 21:37:19 +0530] STEP       Clear cookies from the browser
+[2020-10-22 21:37:19 +0530] INFO       Cleared cookies from the chrome browser #<Libraries::Driver:0x00007fd5ae18b178>
+[2020-10-22 21:37:19 +0530] STEP       Navigate to Upwork website - https://www.upwork.com/
+[2020-10-22 21:37:40 +0530] INFO       #<Libraries::Driver:0x00007fd5ae18b178> browser is loaded with - https://www.upwork.com/
+[2020-10-22 21:37:40 +0530] INFO       Quiting the browser - #<Libraries::Driver:0x00007fd5ae18b178>

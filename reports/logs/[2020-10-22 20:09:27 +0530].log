@@ -1,0 +1,25 @@
+[2020-10-22 20:09:21 +0530] INFO   first test with describe
+[2020-10-22 20:09:21 +0530] INFO   before all
+[2020-10-22 20:09:22 +0530] INFO   Driver initialized is - Driver - #<Libraries::Driver:0x00007fe3b9144fc0>
+[2020-10-22 20:09:22 +0530] INFO   before each test
+[2020-10-22 20:09:22 +0530] INFO   inside the it
+[2020-10-22 20:09:22 +0530] PASS       > inside it
+[2020-10-22 20:09:27 +0530] INFO   #<Libraries::Driver:0x00007fe3b9144fc0> loaded with - https://www.google.com/
+[2020-10-22 20:09:27 +0530] INFO   before each
+[2020-10-22 20:09:27 +0530] INFO   Step 1
+[2020-10-22 20:09:27 +0530] PASS       > inside step1value inside it
+[2020-10-22 20:09:27 +0530] INFO   After each
+[2020-10-22 20:09:27 +0530] INFO   before each
+[2020-10-22 20:09:27 +0530] INFO   Step 2
+[2020-10-22 20:09:27 +0530] PASS       > inside step2value inside itstep value
+[2020-10-22 20:09:27 +0530] INFO   After each
+[2020-10-22 20:09:27 +0530] INFO   before each
+[2020-10-22 20:09:27 +0530] INFO   Step 3
+[2020-10-22 20:09:27 +0530] PASS       > inside step3value inside it
+[2020-10-22 20:09:27 +0530] INFO   After each
+[2020-10-22 20:09:27 +0530] INFO   before each
+[2020-10-22 20:09:27 +0530] INFO   Step 4
+[2020-10-22 20:09:27 +0530] PASS       > inside step4value inside it
+[2020-10-22 20:09:27 +0530] INFO   After each
+[2020-10-22 20:09:27 +0530] INFO   After each test
+[2020-10-22 20:09:27 +0530] INFO   After all
