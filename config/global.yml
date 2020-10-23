@@ -1,0 +1,8 @@
+browser: chrome
+headless: false
+screen_horizontal: 1280
+screen_vertical: 800
+implicit_wait: 10
+screenshot_location: reports/screenshots
+logger_level: test
+
