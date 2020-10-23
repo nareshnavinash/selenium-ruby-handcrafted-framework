@@ -1,4 +1,4 @@
-# Teber-Ruby
+# Selenium-Ruby-POM-Framework
 
 Teber-Ruby is a Page Object Model (POM) framework for selenium automation with ruby `Cucumber`. In order to make the testing faster used 'parallel_tests' gem to run multiple threads to run the tests at the same time. For reporting 'allure' is being adapted.
 
