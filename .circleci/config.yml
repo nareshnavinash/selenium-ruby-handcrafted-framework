@@ -6,12 +6,13 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6-stretch-node-browsers-legacy # Image that supports browser automation using JS
+      - image: circleci/ruby:2.6-buster-node-browsers-legacy # Image that supports browser automation using JS
     resource_class: small # Specifying the size of the instance that is needed to run the tests
     working_directory: ~/project
     steps:
       - checkout
       - run: gem install bundler:2.0.2
+      - run: gem install selenium-webdriver
       - restore_cache:
           keys:
             - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
