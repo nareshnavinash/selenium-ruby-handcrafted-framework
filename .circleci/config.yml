@@ -1,0 +1,28 @@
+version: 2.1
+
+orbs:
+  allure: ayte/allure@0.1.3
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.6-stretch-node-browsers-legacy # Image that supports browser automation using JS
+    resource_class: small # Specifying the size of the instance that is needed to run the tests
+    working_directory: ~/project
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-{{ arch }}-{{ .Branch }}
+            - gem-cache-v1
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: "Run tests in Chrome"
+          command: |
+            ruby spec/test_find_professionals.rb
+
