@@ -1,3 +1,4 @@
 search_keyword:
   - Automation
 url_with_search_key: https://www.upwork.com/search/profiles/?nbs=1&q=
+url_with_profile_preview: https://www.upwork.com/search/profiles/?nbs=1&q=Automation&profile=~01dabbff50ebecbf93

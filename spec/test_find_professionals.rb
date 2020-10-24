@@ -40,7 +40,6 @@ describe("Find Professionals in Upwork") do
                 @@find_prof_page.find_professionals_and_agencies_text_box.flash
                 @@find_prof_page.find_professionals_and_agencies_text_box.mouse_over
                 @@find_prof_page.find_professionals_and_agencies_text_box.click
-                # sleep(60)
                 @@find_prof_page.search_for_keyword(search_key)
                 if !@@search_listing.is_search_listing_displayed?
                     @@driver.quit
@@ -52,6 +51,7 @@ describe("Find Professionals in Upwork") do
             end
             step("Parsing the first page with search results and storing the results in hash of hash format") do
                 @@result_hash = @@search_listing.parse_results_page_and_store_values
+                Log.info("#{@@result_hash}")
             end
             step("Validate the results hash along with the search key that is used to get the results") do
                 @@result_hash.each do |key, value|
@@ -76,23 +76,37 @@ describe("Find Professionals in Upwork") do
                         end
                     end
                     if pass_result == {}
-                        Log.fail("!!! Search keyword is not matched with any attributes for the freelancer - #{value["name"]}")
+                        Log.fail("Search keyword is not matched with any attributes for the freelancer - #{key}. #{value[:name]}")
+                        Log.info("Attributes that doesn't have keyword are #{fail_result}")
                     else
-                        Log.pass("Key which contains the search text are #{key}. #{pass_result}")
+                        Log.pass("Search keyword is matched with few attributes for the freelancer - #{key}. #{value[:name]}")
+                        Log.info("Matched attributes with the keyword are #{pass_result}")
+                        Log.info("Attributes that doesn't have keyword are #{fail_result}")
                     end
-                    Log.fail("Key which doesn't contain the search text are #{key}. #{fail_result}")
                 end
             end
             step("Click on the random profile from the search result and fetch the freelancer details from the freelancers preview page") do
                 @@profile_count = rand(1..10)
                 @@search_listing.click_on_freelancer_profile(@@profile_count)
+                if !@@profile_preview.is_profile_preview_displayed?
+                    @@driver = Driver.new
+                    @@driver.clear_cookies
+                    @@driver.get(@@test_data["url_with_profile_preview"])
+                    @@profile_count = 1
+                end
                 expect_to_equal(@@profile_preview.is_profile_preview_displayed?, true, "Profile preview is displayed on clicking the freelancers profile")
             end
             step("Fetch details from the freelancers profile preview and compare it with the details dispalyed in search results page") do
                 preview_hash = @@profile_preview.create_hash_for_client_details
-                preview_hash.each do |key, value|
-                    expect_to_equal(@@result_hash[@@profile_count][key], value, "Profile preview and search listing details match for #{key} with values #{@@result_hash[@@profile_count][key]} == #{value}")
-                end
+                expect_to_equal(@@result_hash[@@profile_count][:name], preview_hash[:name], "Profile preview and search listing details match for name with values #{@@result_hash[@@profile_count][:name]} == #{preview_hash[:name]}")
+                expect_to_equal(@@result_hash[@@profile_count][:title], preview_hash[:title], "Profile preview and search listing details match for title with values #{@@result_hash[@@profile_count][:title]} == #{preview_hash[:title]}")
+                expect_to_equal(@@result_hash[@@profile_count][:country], preview_hash[:country], "Profile preview and search listing details match for country with values #{@@result_hash[@@profile_count][:country]} == #{preview_hash[:country]}")
+                expect_to_equal(@@result_hash[@@profile_count][:earned], preview_hash[:earned], "Profile preview and search listing details match for earned with values #{@@result_hash[@@profile_count][:earned]} == #{preview_hash[:earned]}")
+                expect_to_equal(@@result_hash[@@profile_count][:overview].delete("\n").delete(' '), preview_hash[:overview].delete("\n").delete(' '), "Profile preview and search listing details match for overview with values #{@@result_hash[@@profile_count][:overview].delete("\n")} == #{preview_hash[:overview].delete("\n")}")
+                expect_to_equal(@@result_hash[@@profile_count][:upskill_tags], preview_hash[:upskill_tags], "Profile preview and search listing details match for upskill_tags with values #{@@result_hash[@@profile_count][:upskill_tags]} == #{preview_hash[:upskill_tags]}")
+                expect_to_equal(@@result_hash[@@profile_count][:price].delete(' '), preview_hash[:price].delete(' '), "Profile preview and search listing details match for price with values #{@@result_hash[@@profile_count][:price].delete(' ')} == #{preview_hash[:price].delete(' ')}")
+                expect_to_equal((preview_hash[:success_rate].delete("\n").delete(' ').include? @@result_hash[@@profile_count][:success_rate].delete(' ')), true, "Profile preview and search listing details match for success_rate with values #{preview_hash[:success_rate].delete("\n")} == #{@@result_hash[@@profile_count][:success_rate].delete(' ')}")
+                expect_to_equal(@@result_hash[@@profile_count][:associated_with].split("\n")[1], preview_hash[:associated_with].split("\n")[0], "Profile preview and search listing details match for associated_with with values #{@@result_hash[@@profile_count][:associated_with].split("\n")[1]} == #{preview_hash[:associated_with].split("\n")[0]}") if @@result_hash[@@profile_count][:associated_with]
             end
 
         end
