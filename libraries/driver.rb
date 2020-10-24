@@ -46,7 +46,7 @@ module Libraries
 			when 'firefox', 'ff'
 				options = Selenium::WebDriver::Firefox::Options.new
 				if Config.headless
-					switches = ["disable-infobars", "-headless", "--enable-javascript"]
+					switches = ["disable-infobars", "--enable-javascript", "-headless"]
 				else
 					switches = ["disable-infobars", "--enable-javascript"]
 				end
@@ -143,129 +143,6 @@ module Libraries
 			Log.info("Scroll to this locator - #{locator.how} => #{locator.what} on #{$focus_driver}")
 			sleep 1
 		end
-
-		# def mouse_over(locator,index=1)
-		# 	$focus_driver = self
-		# 	element=find_elements(locator)[index-1]
-		# 	@driver.action.move_to(element).perform
-		# 	Log.info("mouse over for the element - #{locator.how} => #{locator.what} is done")
-		# end
-		
-		# def mouse
-		# 	$focus_driver = self
-		# 	return @driver.mouse
-		# end
-
-		
-
-		# def move_and_click(locator)
-		# 	$focus_driver = self
-		# 	ele=find_element(locator)
-		# 	@driver.action.move_to(ele).click.perform
-		# 	Log.info("Mouse over the locator and then click for - #{locator.how} => #{locator.what} is done")
-		# end
-
-		# def current_url
-		# 	$focus_driver = self
-		# 	@driver.current_url
-		# end
-
-		# def switch_to_frame(locator)
-		# 	$focus_driver = self
-		# 	@main_window=@driver.window_handle
-		# 	@driver.switch_to.frame(find_element(locator))
-		# 	Log.info("Switched to iframe - #{locator.how} => #{locator.what} on #{$focus_driver}")
-		# 	return @main_window
-		# end
-
-		# def switch_to_window(locator=nil)
-		# 	$focus_driver = self
-		# 	@main_window=@driver.window_handle
-		# 	locator.click if locator != nil
-		# 	windows=@driver.window_handles
-		# 	new_window=nil;
-		# 	windows.length.times do |i|
-		# 		if windows[i] != @main_window
-		# 			new_window=windows[i]
-		# 		end
-		# 	end
-		# 	@driver.switch_to.window(new_window)
-		# 	Log.info("Switched to new window on #{$focus_driver}")
-		# 	return @main_window
-		# end
-
-		# def revert_to(window=nil)
-		# 	$focus_driver = self
-		# 	if window != nil
-		# 		@driver.switch_to.window(window)
-		# 		puts "Switched back to another window - #{window} in #{$focus_driver}"
-		# 	else
-		# 		@driver.switch_to.window(@main_window)
-		# 		puts "Switched back to main window in #{focus_driver}"
-		# 	end
-		# end
-
-		# def close
-		# 	$focus_driver = self
-		# 	@driver.close
-		# 	puts "Closed the browser - #{$focus_driver}"
-		# end
-
-		# def quit_all
-		# 	@@drivers.each do |driver|
-		# 		driver.quit if driver != self
-		# 	end
-		# 	self.quit
-		# 	puts "deleted all the browsers"
-		# end
-
-		# def self.quit_all_drivers
-		# 	@@drivers.each do |driver|
-		# 		driver.quit if driver != self
-		# 	end
-		# 	puts "deleted all the browsers"
-		# end
-
-		# def self.get_all_drivers
-		# 	return @@drivers_with_names
-		# end
-
-		# def alert(ok_cancel)
-		# 	sleep 2
-		# 	alert = @driver.switch_to.alert
-		# 	alertMsg=alert.text
-		# 	if ok_cancel
-		# 		alert.accept
-		# 		puts "The alert was accepted in #{$focus_driver} with alert message #{alertMsg}"
-		# 	else
-		# 		alert.dismiss
-		# 		puts "The alert was dismissed in #{$focus_driver} with alert message #{alertMsg}"
-		# 	end
-		# 	return alertMsg
-		# end
-
-		# def is_alert_present?
-		# 	begin
-		# 		alert = @driver.switch_to.alert
-		# 		alertMsg=alert.text
-		# 		return true
-		# 	rescue Exception => e
-		# 		return false
-		# 	end
-		# end
-
-		# def self.switch_to(driver)
-		# 	$focus_driver = driver
-		# end
-
-		# def drag_and_drop(source_locator, target_locator)
-		# 	source = find_element(source_locator)
-		# 	target = find_element(target_locator)
-		# 	@driver.action.click_and_hold(source).perform
-		# 	@driver.action.move_to(target).release.perform
-		# 	sleep 3
-		# 	puts "In driver #{$focus_driver} - #{source_locator.how} => source_locator.what locator was dragged and moved to this locator #{target_locator.how} => #{target_locator.what}"
-		# end  
 
     end
   end

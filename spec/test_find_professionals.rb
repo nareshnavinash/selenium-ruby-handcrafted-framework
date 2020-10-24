@@ -4,7 +4,6 @@ require_relative '../pages/search_listing.rb'
 require_relative '../pages/profile_preview.rb'
 require_relative '../pages/captcha.rb'
 require 'yaml'
-require 'pry'
 include Pages
 
 describe("Find Professionals in Upwork") do
@@ -31,8 +30,10 @@ describe("Find Professionals in Upwork") do
             end
             step("Navigate to Upwork website - " + Config.url) do
                 @@driver.get(Config.url)
-                sleep(60) if @@captcha.captcha.is_present_with_wait?(10)
-                @@captcha.handle_captcha_page if @@captcha.captcha.is_present_with_wait?(10)
+                if @@captcha.captcha.is_present_with_wait?(10)
+                    sleep(60)
+                    @@captcha.handle_captcha_page
+                end
                 expect_to_equal(@@find_prof_page.find_professionals_and_agencies_text_box.is_present_with_wait?(30), true, "Home page is displayed")
             end 
             step("Select Professionals and Agencies in the search dropdown and search for the keyword - " + search_key) do
@@ -47,6 +48,7 @@ describe("Find Professionals in Upwork") do
                     @@driver.clear_cookies
                     @@driver.get(@@test_data["url_with_search_key"] + search_key)
                 end
+                sleep(60) @@captcha.captcha.is_present_with_wait?(10)
                 expect_to_equal(@@search_listing.is_search_listing_displayed?, true, "Search listing page is displayed")
             end
             step("Parsing the first page with search results and storing the results in hash of hash format") do
@@ -108,7 +110,7 @@ describe("Find Professionals in Upwork") do
                 expect_to_equal((preview_hash[:success_rate].delete("\n").delete(' ').include? @@result_hash[@@profile_count][:success_rate].delete(' ')), true, "Profile preview and search listing details match for success_rate with values #{preview_hash[:success_rate].delete("\n")} == #{@@result_hash[@@profile_count][:success_rate].delete(' ')}")
                 expect_to_equal(@@result_hash[@@profile_count][:associated_with].split("\n")[1], preview_hash[:associated_with].split("\n")[0], "Profile preview and search listing details match for associated_with with values #{@@result_hash[@@profile_count][:associated_with].split("\n")[1]} == #{preview_hash[:associated_with].split("\n")[0]}") if @@result_hash[@@profile_count][:associated_with]
             end
-
         end
     end
+
 end

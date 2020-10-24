@@ -133,22 +133,6 @@ module Libraries
             driver.find_element(self)
         end
 
-        ################################
-        # Check box methods
-        ################################
-
-        def is_checked?(driver = $focus_driver)
-            self.attribute("checked") == "true"
-        end
-
-        def check(driver = $focus_driver)
-            self.click unless self.is_checked?
-        end
-
-        def uncheck(driver = $focus_driver)
-            self.click if self.is_checked?
-        end
-
         ##############################
         # Text box methods
         ##############################
