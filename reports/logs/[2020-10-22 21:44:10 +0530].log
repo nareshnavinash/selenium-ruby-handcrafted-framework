@@ -1,5 +1,0 @@
-[2020-10-22 21:44:04 +0530] FILE    1. Find Professionals in Upwork
-[2020-10-22 21:44:04 +0530] TEST      1. Find professionals using search option in Upwork
-[2020-10-22 21:44:04 +0530] STEP        1. Run chrome brower with headless as false
-[2020-10-22 21:44:06 +0530] STEP        2. Clear cookies from the browser
-[2020-10-22 21:44:06 +0530] STEP        3. Navigate to Upwork website - https://www.upwork.com/
