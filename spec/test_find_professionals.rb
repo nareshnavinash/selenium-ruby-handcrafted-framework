@@ -1,5 +1,5 @@
 require_relative 'spec_helper.rb'
-require_relative '../pages/find_professionals.rb'
+require_relative '../pages/home.rb'
 require_relative '../pages/search_listing.rb'
 require_relative '../pages/profile_preview.rb'
 require_relative '../pages/captcha.rb'
@@ -9,7 +9,7 @@ include Pages
 describe("Find Professionals in Upwork") do
 
     before_all do
-        @@find_prof_page = FindProfessionals.new
+        @@find_prof_page = Home.new
         @@search_listing = SearchListing.new
         @@profile_preview = ProfilePreview.new
         @@captcha = Captcha.new
@@ -48,12 +48,12 @@ describe("Find Professionals in Upwork") do
                     @@driver.clear_cookies
                     @@driver.get(@@test_data["url_with_search_key"] + search_key)
                 end
-                sleep(60) @@captcha.captcha.is_present_with_wait?(10)
+                sleep(60) if @@captcha.captcha.is_present_with_wait?(10)
                 expect_to_equal(@@search_listing.is_search_listing_displayed?, true, "Search listing page is displayed")
             end
             step("Parsing the first page with search results and storing the results in hash of hash format") do
                 @@result_hash = @@search_listing.parse_results_page_and_store_values
-                Log.info("#{@@result_hash}")
+                Log.info("Search results parsed data -> #{@@result_hash}")
             end
             step("Validate the results hash along with the search key that is used to get the results") do
                 @@result_hash.each do |key, value|
@@ -100,6 +100,7 @@ describe("Find Professionals in Upwork") do
             end
             step("Fetch details from the freelancers profile preview and compare it with the details dispalyed in search results page") do
                 preview_hash = @@profile_preview.create_hash_for_client_details
+                Log.info("Freelancer profile fetched details -> #{preview_hash}")
                 expect_to_equal(@@result_hash[@@profile_count][:name], preview_hash[:name], "Profile preview and search listing details match for name with values #{@@result_hash[@@profile_count][:name]} == #{preview_hash[:name]}")
                 expect_to_equal(@@result_hash[@@profile_count][:title], preview_hash[:title], "Profile preview and search listing details match for title with values #{@@result_hash[@@profile_count][:title]} == #{preview_hash[:title]}")
                 expect_to_equal(@@result_hash[@@profile_count][:country], preview_hash[:country], "Profile preview and search listing details match for country with values #{@@result_hash[@@profile_count][:country]} == #{preview_hash[:country]}")

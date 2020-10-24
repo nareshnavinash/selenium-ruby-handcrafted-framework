@@ -1,7 +1,7 @@
-require_relative "../locators/find_professionals.rb"
+require_relative "../locators/home.rb"
 
 module Pages
-    class FindProfessionals < Locators::FindProfessionals
+    class Home < Locators::Home
   
       def initialize
         super()

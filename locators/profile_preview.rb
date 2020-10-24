@@ -23,7 +23,7 @@ module Locators
             @price = Locator.new(:css, "section.up-card-section div.mb-30 h3[role*='presentation']")
             @success_rate = Locator.new(:css, "section.up-card-section div.identity-badges-container")
             @country = Locator.new(:css, "section.up-card-section span[itemprop='country-name']")
-            @earned = Locator.new(:css, "//section[contains(@class,'up-card-section')]//div[contains(@class, 'col-compact')][1]")
+            @earned = Locator.new(:xpath, "//section[contains(@class,'up-card-section')]//div[contains(@class, 'col-compact')][1]")
             @overview_expand_button = Locator.new(:css, "div.up-line-clamp button[aria-expanded='false']")
             @overview = Locator.new(:css, "section.row div.up-line-clamp span.text-pre-line")
             @upskill_tags = Locator.new(:css, "section.row section.up-card-section div.skills span")

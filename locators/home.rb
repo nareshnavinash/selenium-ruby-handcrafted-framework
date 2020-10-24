@@ -2,7 +2,7 @@ require_relative "../libraries/locator.rb"
 include Libraries
 
 module Locators
-    class FindProfessionals
+    class Home
   
 		attr_reader :search_dropdown
 		attr_reader :professionals_and_agencies_option

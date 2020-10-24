@@ -1,5 +1,6 @@
 require "date"
 require_relative "config.rb"
+require_relative "driver.rb"
 
 $logger_text_array = []
 
@@ -87,6 +88,7 @@ module Libraries
             logger_file_message = time + message
             $logger_text_array.append(logger_file_message)
             puts(print_message)
+            Libraries::Driver.get_current_driver.save_screenshot
         end
 
     end

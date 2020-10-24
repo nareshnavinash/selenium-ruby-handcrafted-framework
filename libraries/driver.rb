@@ -115,9 +115,13 @@ module Libraries
 			return @driver.find_element(locator.how,locator.what)
 		end
 
-		def save_screenshot(file_name = nil)
+		def save_screenshot(file = nil)
 			$focus_driver = self
-			file_name = "#{Pathname.pwd}/#{Config.screenshot_location}/#{Time.new.strftime("%Y-%m-%d-%H-%M-%S-%L-%N")}.png" if file_name.nil?
+			if file.nil?
+				file_name = "#{Pathname.pwd}/#{Config.screenshot_location}/#{Time.new.strftime("%Y-%m-%d-%H-%M-%S-%L-%N")}.png"
+			else
+				file_name = "#{Pathname.pwd}/#{Config.screenshot_location}/#{file}.png"
+			end
 			Log.info("#{$focus_driver}'s Screenshot saved in this path => #{file_name}")
 			@driver.save_screenshot(file_name)
 		end
