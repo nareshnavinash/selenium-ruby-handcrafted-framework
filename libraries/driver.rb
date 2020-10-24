@@ -44,7 +44,15 @@ module Libraries
 				@driver.manage.timeouts.implicit_wait = Config.implicit_wait
 
 			when 'firefox', 'ff'
-				# to be added
+				options = Selenium::WebDriver::Firefox::Options.new
+				if Config.headless
+					switches = ["disable-infobars", "-headless", "--enable-javascript"]
+				else
+					switches = ["disable-infobars", "--enable-javascript"]
+				end
+				switches.map { |k| options.add_argument(k) }
+				@driver = Selenium::WebDriver.for(:firefox, options: options)
+				@driver.manage.timeouts.implicit_wait = Config.implicit_wait
 
 			when 'ie', 'internet_explorer'
 				# to be added
