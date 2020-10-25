@@ -1,16 +1,19 @@
 require_relative "../locators/search_listing.rb"
 
 module Pages
+    # Page class inherits the locator class
     class SearchListing < Locators::SearchListing
   
       def initialize
-        super()
+        super() # To make all the locators available within this class
       end
-  
+      
+      # To return whether the search listing page is displayed
       def is_search_listing_displayed?
         return @search_listing_header.is_present_with_wait?(30)
       end
 
+      # To return the parced details from the search listing page
       def parse_results_page_and_store_values
         final_hash = {}
         for i in 1..10
@@ -41,6 +44,7 @@ module Pages
         return final_hash
       end
 
+      # To click on the freelancer profile given the profile count in the list
       def click_on_freelancer_profile(listed_count)
         search_list_overview(listed_count).click
       end

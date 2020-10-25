@@ -1,12 +1,14 @@
 require_relative "../locators/profile_preview.rb"
 
 module Pages
+    # Page class inherits the locator class
     class ProfilePreview < Locators::ProfilePreview
   
       def initialize
-        super()
+        super() # To make all the locators available within this class
       end
 
+      # To create and return the hash by parcing the details from the profile preview page
       def create_hash_for_client_details
         name = if @name.is_present? then @name.text else nil end
         title = if @title.is_present? then @title.text else nil end
@@ -33,11 +35,10 @@ module Pages
         return result_hash
       end
 
+      # To return if the profile preview page is displayed
       def is_profile_preview_displayed?
         return @overview.is_present_with_wait?(30)
       end
-  
-      
 
     end
   end

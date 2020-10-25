@@ -1,1 +1,8 @@
+# This file is where environment specific values are declared
+# Like this file is to hold the production environment details which can hold url, username, password and other details if needed
+# If we need to run the same tests in a different set of environment,
+# One can create a new file with new values and use the same to run the tests
+# For example, for staging environment run, create a file staging.yml and mention the same during the run as environment variable,
+# run as `run_config=staging.yml ruby spec/test_find_professionals.rb` this will pick the values from staging.yml file and run.
+# By default producition.yml file is taken for run, one can change that in libraies/config.rb file.
 url: https://www.upwork.com/

@@ -1,3 +1,4 @@
+# Locator class to declare the locators in the captcha page
 require_relative "../libraries/locator.rb"
 include Libraries
 
