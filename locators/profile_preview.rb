@@ -25,7 +25,7 @@ module Locators
             @country = Locator.new(:css, "section.up-card-section span[itemprop='country-name']")
             @earned = Locator.new(:xpath, "//section[contains(@class,'up-card-section')]//div[contains(@class, 'col-compact')][1]")
             @overview_expand_button = Locator.new(:css, "div.up-line-clamp button[aria-expanded='false']")
-            @overview = Locator.new(:css, "section.row div.resize-observer")
+            @overview = Locator.new(:css, "section.row div.up-line-clamp-expanded")
             @upskill_tags = Locator.new(:css, "section.row section.up-card-section div.skills span")
             @associated_with = Locator.new(:css, "section.row div.mt-30 div.d-flex")
 

@@ -91,6 +91,7 @@ describe("Find Professionals in Upwork") do
                 @@profile_count = rand(1..10)
                 @@search_listing.click_on_freelancer_profile(@@profile_count)
                 if !@@profile_preview.is_profile_preview_displayed?
+                    @@driver.quit
                     @@driver = Driver.new
                     @@driver.clear_cookies
                     @@driver.get(@@test_data["url_with_profile_preview"])
