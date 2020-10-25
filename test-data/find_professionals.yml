@@ -1,4 +1,5 @@
-search_keyword:
+# Test specific data are declared here
+search_keyword: # On giving multiple key word, same test will be running with different search keys. Duplication of code can be avoided here
   - Automation
 url_with_search_key: https://www.upwork.com/search/profiles/?nbs=1&q=
 url_with_profile_preview: https://www.upwork.com/search/profiles/?nbs=1&q=Automation&profile=~01dabbff50ebecbf93

@@ -37,7 +37,7 @@ module Pages
 
       # To return if the profile preview page is displayed
       def is_profile_preview_displayed?
-        return @overview.is_present_with_wait?(30)
+        return @upskill_tags.is_present_with_wait?(30)
       end
 
     end

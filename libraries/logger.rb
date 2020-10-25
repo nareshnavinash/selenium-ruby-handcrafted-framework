@@ -108,6 +108,7 @@ module Libraries
     end
 end
 
+# At the end of all the test run, the console logs will be written to a new log file under reports/logs which can be used for future reference
 at_exit {
     File.open("reports/logs/[" + Time.now.localtime.to_s + "].log", "w+") do |f|
         f.puts($logger_text_array)
