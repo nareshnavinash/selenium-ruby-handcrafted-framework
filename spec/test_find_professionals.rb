@@ -19,6 +19,7 @@ describe("Find Professionals in Upwork") do
         @@profile_preview = ProfilePreview.new
         @@captcha = Captcha.new
         @@test_data = YAML.load_file(Dir.pwd + '/test-data/find_professionals.yml')
+        @@search_keyword = ENV["search_keyword"].split(",") || @@test_data['search_keyword']
     end
 
     # After all Make sure the browser driver initialized is quit properly
@@ -29,7 +30,7 @@ describe("Find Professionals in Upwork") do
     # This is added in additional to the rspec's structure
     # Here you can specify multiple search_key in the test_data yaml file in array format
     # This test will run iteratively for all the search key's and log the results
-    @@test_data['search_keyword'].each do |search_key|
+    @@search_keyword.each do |search_key|
         # This is where the actual test starts
         # A file can have multiple `it` statements within a `describe` block
         it("Find professionals using search option in Upwork") do
@@ -130,7 +131,7 @@ describe("Find Professionals in Upwork") do
                 expect_to_equal(@@result_hash[@@profile_count][:overview]&.delete("\n")&.delete(' '), preview_hash[:overview]&.delete("\n")&.delete(' ')&.split("lessShowlesstext")[0], "Profile preview and search listing details match for overview with values #{@@result_hash[@@profile_count][:overview]&.delete("\n")} == #{preview_hash[:overview]&.delete("\n")}")
                 expect_to_equal(@@result_hash[@@profile_count][:upskill_tags], preview_hash[:upskill_tags], "Profile preview and search listing details match for upskill_tags with values #{@@result_hash[@@profile_count][:upskill_tags]} == #{preview_hash[:upskill_tags]}")
                 expect_to_equal(@@result_hash[@@profile_count][:price]&.delete(' '), preview_hash[:price]&.delete(' '), "Profile preview and search listing details match for price with values #{@@result_hash[@@profile_count][:price]&.delete(' ')} == #{preview_hash[:price]&.delete(' ')}")
-                expect_to_equal((preview_hash[:success_rate]&.delete("\n")&.delete(' ')&.include? @@result_hash[@@profile_count][:success_rate]&.delete(' ')), true, "Profile preview and search listing details match for success_rate with values #{preview_hash[:success_rate]&.delete("\n").to_s} == #{@@result_hash[@@profile_count][:success_rate]&.delete(' ').to_s}")
+                expect_to_equal((preview_hash[:success_rate]&.delete("\n")&.delete(' ')&.include? @@result_hash[@@profile_count][:success_rate]&.delete(' ')), true, "Profile preview and search listing details match for success_rate with values #{preview_hash[:success_rate]&.delete("\n").to_s} == #{@@result_hash[@@profile_count][:success_rate]&.delete(' ').to_s}") if preview_hash[:success_rate]&.delete("\n")&.delete(' ')
                 expect_to_equal(@@result_hash[@@profile_count][:associated_with]&.split("\n")[1], preview_hash[:associated_with]&.split("\n")[0], "Profile preview and search listing details match for associated_with with values #{@@result_hash[@@profile_count][:associated_with]&.split("\n")[1]} == #{preview_hash[:associated_with]&.split("\n")[0]}") if @@result_hash[@@profile_count][:associated_with]
             end
         end
