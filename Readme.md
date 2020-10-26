@@ -6,6 +6,8 @@
 [![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![email me](https://img.shields.io/badge/Contact-Email-green.svg)](mailto:nareshnavinash@gmail.com)
 
+![alt text](libraries/selenium_handcrafted_framework.png)
+
 ## Prerequsite
 * Install RVM in the machine
 * Clone the project to a directory.
